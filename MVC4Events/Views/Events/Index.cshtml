@@ -1,0 +1,48 @@
+﻿@model IEnumerable<MVC4Events.Models.EventModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Registered Events</h2>
+
+<table id="events" class="table" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th width="30%">
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th width="20%">
+                @Html.DisplayNameFor(model => model.Technology)
+            </th>
+            <th width="10%">
+                @Html.DisplayNameFor(model => model.StartingDate)
+            </th>
+            <th width="40%">
+                @Html.DisplayNameFor(model => model.RegistrationLink)
+            </th>
+        </tr>
+    </thead>
+</table>
+
+<script>
+    function jqueryLoaded() {
+        $(document).ready(function () {
+            $('#events').dataTable({
+                "bProcessing": true,
+                "bServerSide": true,
+                "sAjaxSource": "events/query"
+            });
+        });
+    }
+
+    function checkJquery() {
+        if (window.jQuery) {
+            jqueryLoaded();
+        } else {
+            window.setTimeout(checkJquery, 100);
+        }
+    }
+
+    checkJquery();
+</script>
