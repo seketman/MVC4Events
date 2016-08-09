@@ -128,6 +128,7 @@ namespace MVC4Events.Controllers
         /// </param>
         /// <param name="sSearch">Global search field</param>
         /// <returns>Array of events in JSON format</returns>
+        [OutputCache(CacheProfile = "CacheEvents")]
         public string Query(string sEcho, int iDisplayStart, int iDisplayLength, string sSearch = null)
         {
             //  TODO: Do this job in the database
